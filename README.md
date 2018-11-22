@@ -7,6 +7,7 @@ Finaccel-rest-api being developed using Go language and Elasticsearch.Below ment
     URL:- http://localhost:8000/cabride/{location}
     
 2). Book the customer trip and send them the booking acknowledgment message.
+    
     URL:- http://localhost:8000/cabride/createbooking
           {
             "customername": "Albert",
