@@ -1,0 +1,89 @@
+
+
+
+For ride-hailing transport sytem, project goal is to build web application to:
+(1) list nearest drivers given a location.
+(2) make a booking given the source and destination.
+
+The tasks:
+- Write a REST API server using Golang/Python Django.
+- Design and implement a REST API endpoint to return all drivers within 'X' kilometer radius of a given location.
+- Design and implement a REST API to make booking from the user given source and destination.
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+
+CustOrder                         CabLocation             CabBookingDetails
+------------------------         ----------------         ------------------------
+customer_name                     driver_name               customer_name
+customer_mobile_no                distance                  customer_mobile_no
+source_loc_address                location_name             source_loc_address
+dest_loc_address                  location                  dest_loc_address
+                                                            driver_name
+															status
+                                  
+
+                                  
+                                  
+type CustOrder struct {
+    CustomerName         string    `json:"customername,omitempty"`
+    CustomerMobileNo     int64     `json:"customermobileno,omitempty"`
+    SourceLocAddress     string    `json:"sourcelocaddress,omitempty"`
+    DestLocAddress       string    `json:"destlocaddress,omitempty"`
+}
+type Location struct {
+    Lat                   float64  `json:"lat,omitempty"`
+    Lon                   float64  `json:"lon,omitempty"`
+}
+type CabLocation struct {
+    DriverName           string    `json:"drivername,omitempty"`
+    Distance             string    `json:"distance,omitempty"`
+    LocationName         string    `json:"locationname,omitempty"`
+    Location             *Location `json:"location,omitempty"`
+}
+type CabBookingDetails struct {
+    CustomerName          string   `json:"customername,omitempty"`
+    CustomerMobileNo      int64    `json:"customermobileno,omitempty"`
+    SourceLocAddress      string   `json:"sourcelocaddress,omitempty"`
+    DestLocAddress        string   `json:"destlocaddress,omitempty"`
+    DriverName            string   `json:"drivername,omitempty"`
+    Status                string   `json:"status,omitempty"`
+}
+
+
+    "location_name": "Mehrauli",
+    "location": "40.722,-73.989"
+    
+    "location_name": "Vasant_Kunj",
+    "location": "40.750,-73.996"
+
+    "location_name": "Vasant_Vihar",
+    "location": "41.250,-74.290"
+    
+    "location_name": "Munirka",
+    "location": "41.352, -74.495"
+
+    
+#GET Method
+
+http://localhost:8000/cabride/Vasant%20Vihar    
+
+    
+#POST Method 
+---------------------------------   
+http://localhost:8000/cabride/createbooking
+
+{
+    "customername": "Albert",
+    "customermobileno": 89786331,
+    "sourcelocaddress": "Mehrauli",
+    "destlocaddress": "Karol Bagh",
+    "drivername": "Alex",
+    "status": "Booked"
+}
+
+
+
+
+

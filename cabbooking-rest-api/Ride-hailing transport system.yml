@@ -1,0 +1,210 @@
+
+
+# Mapping 
+PUT /cablocation  
+{
+  "mappings": {
+    "cab": {
+      "properties": {        
+        "drivername": {
+          "type": "text"
+        },
+    		"distance": {
+    		  "type": "text"
+    		},
+        "locationname": {
+          "type": "text"
+        },
+        "location": {
+          "type": "geo_point"
+        }
+      }
+    }
+  }
+}
+
+
+
+
+# Insert Record
+
+# Example  - An object representation with lat and lon explicitly named.
+#                  "location" : {
+#                      "lat" : 40.722,
+#                      "lon" : -73.989
+#                  }
+
+PUT /cablocation/cab/1
+{
+  "drivername": "Rakesh",
+  "distance": "1km",
+  "locationname": "Mehrauli",
+  "location": {
+       "lat" : 40.722,
+       "lon" : -73.989
+  }
+}
+
+
+
+PUT /cablocation/cab/2
+{
+  "drivername": "Joe",
+  "distance": "1km",
+  "locationname": "Mehrauli",
+  "location": {
+       "lat" : 40.722,
+       "lon" : -73.989
+  }
+}
+
+
+
+
+# Example  - An object representation with lat and lon explicitly named.
+#                  "location" : {
+#                      "lat" : 40.750,
+#                      "lon" : -73.996
+#                  }
+
+PUT /cablocation/cab/3
+{
+  "drivername":  "Rajesh",
+  "distance": "2km",
+  "locationname": "Vasant Kunj",
+  "location": {
+       "lat" : 40.750,
+       "lon" : -73.996
+  }  
+}
+
+
+
+PUT /cablocation/cab/4
+{
+  "drivername":  "Ramesh",
+  "distance": "2km",
+  "locationname": "Vasant Kunj",
+  "location": {
+       "lat" : 40.750,
+       "lon" : -73.996
+  }  
+}
+
+
+# Example  - An object representation with lat and lon explicitly named.
+#                  "location" : {
+#                      "lat" : 41.250,
+#                      "lon" : -74.290
+#                  }
+
+PUT /cablocation/cab/5
+{
+  "drivername":  "Amandeep",
+  "distance": "3km",
+  "locationname": "Vasant Vihar",
+  "location": {
+       "lat" : 41.250,
+       "lon" : -74.290
+  }    
+}
+
+
+
+PUT /cablocation/cab/6
+{
+  "drivername":  "Amarinder",
+  "distance": "3km",
+  "locationname": "Vasant Vihar",
+  "location": {
+       "lat" : 41.250,
+       "lon" : -74.290
+  }    
+}
+
+
+
+
+# Example  - An object representation with lat and lon explicitly named.
+#                  "location" : {
+#                      "lat" : 41.352,
+#                      "lon" : -74.495
+#                  }
+
+PUT /cablocation/cab/7
+{
+  "drivername":  "Thomas",
+  "distance": "4km",
+  "locationname": "Munirka",
+  "location": {
+       "lat" : 41.352,
+       "lon" : -74.495
+  }    
+}
+
+
+
+## GET Query By geo_distance filter
+
+
+GET cablocation/cab/_search
+{
+  "query": {
+      "bool" : {
+          "must" : {
+              "match_all" : {}
+          },
+          "filter" : {
+              "geo_distance" : {
+                  "distance" : "1km",
+                  "location": {
+                       "lat" : 40.722,
+                       "lon" : -73.989
+                  } 
+              }
+          }
+      }
+  }
+}
+
+GET cablocation/cab/_search
+{
+  "query": {
+      "bool" : {
+          "must" : {
+              "match_all" : {}
+          },
+          "filter" : {
+              "geo_distance" : {
+                  "distance" : "4km",
+                  "location": {
+                       "lat" : 41.352,
+                       "lon" : -74.495
+                  }                   
+              }
+          }
+      }
+  }
+}
+
+
+GET cablocation/cab/_search
+{
+  "query": {
+      "bool" : {
+          "must" : {
+              "match_all" : {}
+          }
+      }
+  }
+}
+
+
+
+
+## DELETE 
+
+DELETE /cablocation
+
+DELETE /cablocation/cab/7
+
