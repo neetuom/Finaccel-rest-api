@@ -17,7 +17,7 @@ Finaccel-rest-api being developed using Go language and Elasticsearch.Below ment
             "destlocaddress": "Karol Bagh",
             "drivername": "Alex",
             "status": "Booked"
-           }
+           } 
            
      - Here Customer booking accepted and add into array and printed it on console, 
        due to complexity of schema dependency and time contraint.
